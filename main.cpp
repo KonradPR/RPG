@@ -5,22 +5,28 @@
 #include <conio.h>
 using namespace std;
 
-//TODO: Define a structure for representing a player
+//TODO: Define a class for representing a player
 
-struct player {
+class player
+{
+    public:
     string name;
     int column;
     int row;
+    //TODO: Declare and define a function for handling user's moves and updating his position on the map
+    void map_position(int &pos_x, int &pos_y, char map[][100], char map_help[]);
 };
 
+//TODO: Declare player's object
+player player_1;
 
 
 
 //TODO: Declare and define a function for creating a map
 void map_create(int, int, char map[][100]);
 
-//TODO: Declare and define a function for handling user's moves and updating his position on the map
-void map_position(int &pos_x, int &pos_y, char map[][100], char map_help[]);
+
+
 
 //TODO: Declare and define a function for rendering a map
 void rendering(int lenght, int wide, char map[][100]);
@@ -30,13 +36,13 @@ void rendering(int lenght, int wide, char map[][100]);
 
 
 int main()
-{  /* player main_player;
-    cin>>main_player.name;
-    cin>>main_player.column;
-    cin>>main_player.row;*/
-    // int a aby petla ciagle chodzila xD to do usuniecia poxniej
-    int a=2;
+{
+    cin>>player_1.name;
+    cin>>player_1.column;
+    cin>>player_1.row;
 
+
+    //TODO: Declare and define starting player's position
     int pos_x=1,pos_y=1;
     //TODO: Define the two dimensional char array that represents the map
 
@@ -52,9 +58,9 @@ int main()
     //TODO: Create a simple loop that will ac as the game engine for now
     map_create(lenght, wide, map);
     rendering(lenght,wide,map);
-    while(a==2)
+    while(true)
     {
-        map_position(pos_x, pos_y, map, map_help);
+        player_1.map_position(pos_x, pos_y, map, map_help);
         system( "cls");
         rendering(lenght,wide,map);
     }
@@ -62,6 +68,7 @@ int main()
 
     return 0;
 }
+//*******************************************************************
 void map_create(int lenght, int wide,char map[][100])
 {
      map[2][2]='o';
@@ -104,6 +111,7 @@ void map_create(int lenght, int wide,char map[][100])
     map[1][3]='b';
 
 }
+//*************************************************************
 void rendering(int lenght, int wide, char map[][100])
 {
    for(int i=0,i2=0;i<lenght;i++,i2++)
@@ -114,8 +122,8 @@ void rendering(int lenght, int wide, char map[][100])
 
     }
 }
-
-void map_position(int &pos_x, int &pos_y, char map[][100], char map_help[])
+//*************************************************************************
+void player::map_position(int &pos_x, int &pos_y, char map[][100], char map_help[])
 {
     char movement;
     movement = _getch();
